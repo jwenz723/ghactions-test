@@ -37,10 +37,8 @@ jobs:
           AFTER: "${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.event.after }}"
           BEFORE: "${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}"
         run: |
-          echo "github.event_name: ${{ github.event_name }}"
-          echo "before: $BEFORE"
-          echo "after: $AFTER"
           DIFF=`git diff-tree --no-commit-id --name-only -r $BEFORE $AFTER`
+          # escape new lines https://github.community/t/set-output-truncates-multiline-strings/16852/3
           DIFF="${DIFF//'%'/'%25'}"
           DIFF="${DIFF//$'\n'/'%0A'}"
           DIFF="${DIFF//$'\r'/'%0D'}"
@@ -48,5 +46,5 @@ jobs:
 
       - name: print diff
         run: |
-          echo "diff: ${{ steps.calculate.outputs.DIFF }}"
+          echo "diff:\n${{ steps.calculate.outputs.DIFF }}"
 
