@@ -46,5 +46,6 @@ jobs:
 
       - name: print diff
         run: |
-          echo "diff:\n${{ steps.calculate.outputs.DIFF }}"
+          echo "diff:"
+          echo "${{ steps.calculate.outputs.DIFF }}"
 
