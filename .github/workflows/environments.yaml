@@ -1,0 +1,20 @@
+name: "environments"
+
+on:
+  pull_request:
+    branches:
+      - main
+#    paths:
+#      - "environments/**"
+  push:
+    branches:
+      - main
+#    paths:
+#      - "environments/**"
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: calculate diff
+        run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
