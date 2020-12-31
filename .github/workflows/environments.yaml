@@ -40,7 +40,11 @@ jobs:
           echo "github.event_name: ${{ github.event_name }}"
           echo "before: $BEFORE"
           echo "after: $AFTER"
-          echo "::set-output name=DIFF::$(git diff-tree --no-commit-id --name-only -r $BEFORE $AFTER)"
+          DIFF=`git diff-tree --no-commit-id --name-only -r $BEFORE $AFTER`
+          DIFF="${DIFF//'%'/'%25'}"
+          DIFF="${DIFF//$'\n'/'%0A'}"
+          DIFF="${DIFF//$'\r'/'%0D'}"
+          echo "::set-output name=DIFF::$DIFF"
 
       - name: print diff
         run: |
