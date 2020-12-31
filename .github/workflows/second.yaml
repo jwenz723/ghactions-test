@@ -1,0 +1,20 @@
+name: "environments/second"
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "environments/second/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "environments/second/**"
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: do stuff
+        run: echo "doing stuff"
