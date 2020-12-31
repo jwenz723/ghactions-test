@@ -49,3 +49,11 @@ jobs:
           echo "diff:"
           echo "${{ steps.calculate.outputs.DIFF }}"
 
+      - name: first
+        if: contains(steps.calculate.outputs.DIFF, "environments/first")
+        run: echo 'changes detected to first environment'
+
+      - name: second
+        if: contains(steps.calculate.outputs.DIFF, "environments/second")
+        run: echo 'changes detected to second environment'
+
