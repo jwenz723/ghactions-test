@@ -31,10 +31,6 @@ jobs:
           JOB_CONTEXT: ${{ toJson(job) }}
         run: echo "$JOB_CONTEXT"
 
-#      - name: calculate diff
-#        if: github.event_name == 'push'
-#        run: git diff-tree --no-commit-id --name-only -r ${{ github.event.before }} ${{ github.event.after }}
-
       - name: calculate diff
         id: calculate
         env:
