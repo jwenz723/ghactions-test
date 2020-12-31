@@ -13,8 +13,11 @@ on:
 #      - "environments/**"
 
 jobs:
-  terraform:
+  main:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: calculate diff
         run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
