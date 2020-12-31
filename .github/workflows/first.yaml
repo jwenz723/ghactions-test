@@ -1,0 +1,20 @@
+name: "environments/first"
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "environments/first/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "environments/first/**"
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: do stuff
+        run: echo "doing stuff"
